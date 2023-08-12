@@ -1,0 +1,7 @@
+<div class="container">
+    <h1>Students list</h1>
+    {{#each users}}
+    {{username}}
+    <button><a href="/user/{{_id}}">View profile</a></button>
+    {{/each}}
+</div>
