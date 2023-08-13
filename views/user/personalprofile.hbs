@@ -1,8 +1,9 @@
 <div class="container">
     <h1>Bienvenid@, {{loggedUser.username}}</h1>
     <hr>
-    <p>Your bio:{{loggedUser.bio}}</p>
-    <a href="/user/{{loggedUser._id}}/edit">Edit</a>
+    <h3>Your bio:</h3>
+    <p>{{loggedUser.bio}}</p>
+    <a class="btn btn-dark" href="/user/{{loggedUser._id}}/edit">Edit</a>
     <hr>
 
     <a href="/" class="btn btn-dark">Volver a inicio</a>

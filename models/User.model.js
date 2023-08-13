@@ -11,6 +11,11 @@ const userSchema = new Schema(
       enum: ['USER', 'ADMIN'],
       default: 'USER'
     },
+
+    favs: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Recipe'
+    }],
     bio: { type: String, default: "bio missing" }
   },
   {

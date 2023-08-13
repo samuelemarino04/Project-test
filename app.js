@@ -13,10 +13,8 @@ require("./config")(app);
 require('./config/session.config')(app)
 
 
-const capitalize = require("./utils/capitalize");
-const projectName = "Proyecto-test-auth";
 
-app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
+app.locals.appTitle = `ONLYPIZZAS`;
 
 // 👇 Start handling routes here
 const indexRoutes = require("./routes/index.routes");
@@ -27,6 +25,9 @@ app.use("/auth", authRoutes);
 
 const userRoutes = require("./routes/user.routes");
 app.use("/user", userRoutes);
+
+const recipesRoutes = require("./routes/recipes.routes");
+app.use("/recipes", recipesRoutes);
 
 require("./error-handling")(app);
 
