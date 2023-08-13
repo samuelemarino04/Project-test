@@ -6,8 +6,6 @@ const User = require("../models/User.model")
 
 router.get("/profile", isLoggedIn, (req, res) => {
 
-    console.log('EL USUARIO LOGUEADO ES', req.session.currentUser)
-
     res.render("user/personalprofile", { loggedUser: req.session.currentUser });
 })
 
@@ -22,7 +20,7 @@ router.get('/list', isLoggedIn, (req, res) => {
 })
 
 router.get('/:user_id', isLoggedIn, checkRoles('USER', "ADMIN"), (req, res) => {
-
+    const loggedUser = req.session.currentUser
     const { user_id } = req.params
 
     const userRoles = {
@@ -32,7 +30,7 @@ router.get('/:user_id', isLoggedIn, checkRoles('USER', "ADMIN"), (req, res) => {
     if (userRoles.isPm || userRoles.isUserId) {
         User
             .findById(user_id)
-            .then(user => res.render('user/profiles', { user, userRoles }))
+            .then(user => res.render('user/profiles', { user, userRoles, loggedUser }))
             .catch(err => console.log(err))
     }
     else
@@ -40,12 +38,13 @@ router.get('/:user_id', isLoggedIn, checkRoles('USER', "ADMIN"), (req, res) => {
 })
 
 router.get("/:user_id/edit", isLoggedIn, checkRoles('USER', 'ADMIN'), (req, res) => {
+    const loggedUser = req.session.currentUser
 
     const { user_id } = req.params
 
     User
         .findById(user_id)
-        .then(user => res.render("user/edit", user))
+        .then(user => res.render("user/edit", { user, loggedUser }))
         .catch(err => console.log(err))
 })
 
